@@ -1,10 +1,11 @@
 # ACE OSG 
 Scripts and notes for running bioinformatics workflows on [OSG](https://osg-htc.org/).
 
-- Make individual folders for a particular tool or type of analysis.  
+- Make individual folders for a particular tool, pipeline, or type of analysis.  
 - Examples of files to share:
   - htcondor submit files
   - executable shell scripts
+  - DAGMan, Pegasus, Snakemake, Nextflow or other pipeline scripts
   - scripts that prepare data for htc job submission (e.g. downloading or chunking data; making directories to organize outputs)
   - Dockerfiles and links to containers you have built
   - notes (make a README.md in the folder or other markdown file) for how to use the scripts and other advice for working with specific tools/data types on OSG (e.g. tool X uses Y amount of memory).
