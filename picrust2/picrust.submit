@@ -1,0 +1,34 @@
+## name for the batch/job
+batch_name = place_seqs
+
+## singularity
+## path to the picrust2 image sif file in quotes - edit for location of your sif file
+## if you store your file in /public/username/path/to/sif, use "stash:///osgconnect/public/username/path/to/sif
++SingularityImage = "./picrust2_2.5.0.sif"
+
+## program params
+executable = run_picrust.sh
+
+## file i/o
+transfer_input_files = chemerin_16S/seqs.fna
+transfer_output_files = out.tre, intermediate/place_seqs/epa_out/epa_result.jplace
+
+## put output in output directory
+## transfer_output_remaps is a little janky, but it seems to work with no spaces
+## in each remap
+transfer_output_remaps = "out.tre=./picrust2_out_pipeline/out.tre; epa_result.jplace=picrust2_out_pipeline/epa_result.jplace"
+
+## stderr/out/log params
+output = $(batch_name).$(Cluster).$(Process).out
+error = $(batch_name).$(Cluster).$(Process).err
+log = $(batch_name).$(Cluster).$(Process).log
+
+## resources
+request_cpus = 1
+request_memory = 16GB
+# the sif file is ~825MB, so make sure to allocate enough disk for that
+# AND input and output
+request_disk = 2GB
+
+## multiple/array/queue jobs
+queue 1
